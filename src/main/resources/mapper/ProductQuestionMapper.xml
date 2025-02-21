@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fit.dao.ProductQuestionDao">
+  <resultMap id="BaseResultMap" type="com.fit.entity.ProductQuestion">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="anisys" jdbcType="VARCHAR" property="anisys" />
+    <result column="stem" jdbcType="VARCHAR" property="stem" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="product_category" jdbcType="BIGINT" property="productCategory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, anisys, stem, `type`, product_category
+  </sql>
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_question
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from product_question
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="save" keyProperty="id" parameterType="com.fit.entity.ProductQuestion" useGeneratedKeys="true">
+    insert into product_question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="anisys != null">
+        anisys,
+      </if>
+      <if test="stem != null">
+        stem,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="productCategory != null">
+        product_category,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anisys != null">
+        #{anisys,jdbcType=VARCHAR},
+      </if>
+      <if test="stem != null">
+        #{stem,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="productCategory != null">
+        #{productCategory,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.fit.entity.ProductQuestion">
+    update product_question
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anisys != null">
+        anisys = #{anisys,jdbcType=VARCHAR},
+      </if>
+      <if test="stem != null">
+        stem = #{stem,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="productCategory != null">
+        product_category = #{productCategory,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="Base_Where_List">
+    <where>
+      <if test="createDate != null and createDate != ''">
+         and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null and modifyDate != ''">
+         and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="anisys != null and anisys != ''">
+         and anisys = #{anisys,jdbcType=VARCHAR}
+      </if>
+      <if test="stem != null and stem != ''">
+         and stem = #{stem,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null and type != ''">
+         and `type` = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="productCategory != null and productCategory != ''">
+         and product_category = #{productCategory,jdbcType=BIGINT}
+      </if>
+    </where>
+  </sql>
+  <select id="findList" parameterType="com.fit.entity.ProductQuestion" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from product_question
+    <include refid="Base_Where_List" />
+    order by id desc 
+	<if test="offset != null and limit != null">
+	limit ${offset}, ${limit}
+	</if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1) from product_question
+    <include refid="Base_Where_List" />
+  </select>
+  <select id="get" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from product_question
+     <include refid="Base_Where_List" />
+  </select>
+  <delete id="batchDelete">
+    delete from product_question
+     where id in (
+     <foreach collection="array" item="id" separator=",">
+     #{id}
+     </foreach>
+    )
+  </delete>
+</mapper>

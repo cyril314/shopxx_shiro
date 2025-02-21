@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fit.dao.SysAdminDao">
+  <resultMap id="BaseResultMap" type="com.fit.entity.SysAdmin">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
+    <result column="login_failure_count" jdbcType="INTEGER" property="loginFailureCount" />
+    <result column="locked_date" jdbcType="TIMESTAMP" property="lockedDate" />
+    <result column="is_locked" jdbcType="BIT" property="isLocked" />
+    <result column="is_enabled" jdbcType="BIT" property="isEnabled" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, username, `password`, department, role_id, `name`, 
+    email, login_ip, login_date, login_failure_count, locked_date, is_locked, is_enabled
+  </sql>
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_admin
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from sys_admin
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="save" keyProperty="id" parameterType="com.fit.entity.SysAdmin" useGeneratedKeys="true">
+    insert into sys_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="loginDate != null">
+        login_date,
+      </if>
+      <if test="loginFailureCount != null">
+        login_failure_count,
+      </if>
+      <if test="lockedDate != null">
+        locked_date,
+      </if>
+      <if test="isLocked != null">
+        is_locked,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null">
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginFailureCount != null">
+        #{loginFailureCount,jdbcType=INTEGER},
+      </if>
+      <if test="lockedDate != null">
+        #{lockedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.fit.entity.SysAdmin">
+    update sys_admin
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginDate != null">
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginFailureCount != null">
+        login_failure_count = #{loginFailureCount,jdbcType=INTEGER},
+      </if>
+      <if test="lockedDate != null">
+        locked_date = #{lockedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isLocked != null">
+        is_locked = #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="Base_Where_List">
+    <where>
+      <if test="createDate != null and createDate != ''">
+         and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null and modifyDate != ''">
+         and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="username != null and username != ''">
+         and username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null and password != ''">
+         and `password` = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="department != null and department != ''">
+         and department = #{department,jdbcType=VARCHAR}
+      </if>
+      <if test="roleId != null and roleId != ''">
+         and role_id = #{roleId,jdbcType=BIGINT}
+      </if>
+      <if test="name != null and name != ''">
+         and `name` = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null and email != ''">
+         and email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="loginIp != null and loginIp != ''">
+         and login_ip = #{loginIp,jdbcType=VARCHAR}
+      </if>
+      <if test="loginDate != null and loginDate != ''">
+         and login_date = #{loginDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="loginFailureCount != null and loginFailureCount != ''">
+         and login_failure_count = #{loginFailureCount,jdbcType=INTEGER}
+      </if>
+      <if test="lockedDate != null and lockedDate != ''">
+         and locked_date = #{lockedDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isLocked != null and isLocked != ''">
+         and is_locked = #{isLocked,jdbcType=BIT}
+      </if>
+      <if test="isEnabled != null and isEnabled != ''">
+         and is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+    </where>
+  </sql>
+  <select id="findList" parameterType="com.fit.entity.SysAdmin" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from sys_admin
+    <include refid="Base_Where_List" />
+    order by id desc 
+	<if test="offset != null and limit != null">
+	limit ${offset}, ${limit}
+	</if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1) from sys_admin
+    <include refid="Base_Where_List" />
+  </select>
+  <select id="get" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from sys_admin
+     <include refid="Base_Where_List" />
+  </select>
+  <delete id="batchDelete">
+    delete from sys_admin
+     where id in (
+     <foreach collection="array" item="id" separator=",">
+     #{id}
+     </foreach>
+    )
+  </delete>
+</mapper>

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fit.dao.MemberDao">
+  <resultMap id="BaseResultMap" type="com.fit.entity.Member">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="point" jdbcType="BIGINT" property="point" />
+    <result column="is_enabled" jdbcType="BIT" property="isEnabled" />
+    <result column="is_locked" jdbcType="BIT" property="isLocked" />
+    <result column="member_rank" jdbcType="BIGINT" property="memberRank" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="birth" jdbcType="TIMESTAMP" property="birth" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="area" jdbcType="BIGINT" property="area" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="attribute_value0" jdbcType="VARCHAR" property="attributeValue0" />
+    <result column="attribute_value1" jdbcType="VARCHAR" property="attributeValue1" />
+    <result column="attribute_value2" jdbcType="VARCHAR" property="attributeValue2" />
+    <result column="attribute_value3" jdbcType="VARCHAR" property="attributeValue3" />
+    <result column="attribute_value4" jdbcType="VARCHAR" property="attributeValue4" />
+    <result column="attribute_value5" jdbcType="VARCHAR" property="attributeValue5" />
+    <result column="attribute_value6" jdbcType="VARCHAR" property="attributeValue6" />
+    <result column="attribute_value7" jdbcType="VARCHAR" property="attributeValue7" />
+    <result column="attribute_value8" jdbcType="VARCHAR" property="attributeValue8" />
+    <result column="attribute_value9" jdbcType="VARCHAR" property="attributeValue9" />
+    <result column="login_failure_count" jdbcType="INTEGER" property="loginFailureCount" />
+    <result column="locked_date" jdbcType="TIMESTAMP" property="lockedDate" />
+    <result column="login_date" jdbcType="TIMESTAMP" property="loginDate" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="register_ip" jdbcType="VARCHAR" property="registerIp" />
+    <result column="safe_key_expire" jdbcType="TIMESTAMP" property="safeKeyExpire" />
+    <result column="safe_key_value" jdbcType="VARCHAR" property="safeKeyValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, username, `password`, amount, balance, point, is_enabled, 
+    is_locked, member_rank, `name`, gender, birth, email, address, area, zip_code, phone, 
+    mobile, attribute_value0, attribute_value1, attribute_value2, attribute_value3, attribute_value4, 
+    attribute_value5, attribute_value6, attribute_value7, attribute_value8, attribute_value9, 
+    login_failure_count, locked_date, login_date, login_ip, `number`, register_ip, safe_key_expire, 
+    safe_key_value
+  </sql>
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from member
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="save" keyProperty="id" parameterType="com.fit.entity.Member" useGeneratedKeys="true">
+    insert into member
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="isLocked != null">
+        is_locked,
+      </if>
+      <if test="memberRank != null">
+        member_rank,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="zipCode != null">
+        zip_code,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="attributeValue0 != null">
+        attribute_value0,
+      </if>
+      <if test="attributeValue1 != null">
+        attribute_value1,
+      </if>
+      <if test="attributeValue2 != null">
+        attribute_value2,
+      </if>
+      <if test="attributeValue3 != null">
+        attribute_value3,
+      </if>
+      <if test="attributeValue4 != null">
+        attribute_value4,
+      </if>
+      <if test="attributeValue5 != null">
+        attribute_value5,
+      </if>
+      <if test="attributeValue6 != null">
+        attribute_value6,
+      </if>
+      <if test="attributeValue7 != null">
+        attribute_value7,
+      </if>
+      <if test="attributeValue8 != null">
+        attribute_value8,
+      </if>
+      <if test="attributeValue9 != null">
+        attribute_value9,
+      </if>
+      <if test="loginFailureCount != null">
+        login_failure_count,
+      </if>
+      <if test="lockedDate != null">
+        locked_date,
+      </if>
+      <if test="loginDate != null">
+        login_date,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="registerIp != null">
+        register_ip,
+      </if>
+      <if test="safeKeyExpire != null">
+        safe_key_expire,
+      </if>
+      <if test="safeKeyValue != null">
+        safe_key_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=BIGINT},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="isLocked != null">
+        #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="memberRank != null">
+        #{memberRank,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=BIGINT},
+      </if>
+      <if test="zipCode != null">
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue0 != null">
+        #{attributeValue0,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue1 != null">
+        #{attributeValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue2 != null">
+        #{attributeValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue3 != null">
+        #{attributeValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue4 != null">
+        #{attributeValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue5 != null">
+        #{attributeValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue6 != null">
+        #{attributeValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue7 != null">
+        #{attributeValue7,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue8 != null">
+        #{attributeValue8,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue9 != null">
+        #{attributeValue9,jdbcType=VARCHAR},
+      </if>
+      <if test="loginFailureCount != null">
+        #{loginFailureCount,jdbcType=INTEGER},
+      </if>
+      <if test="lockedDate != null">
+        #{lockedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginDate != null">
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="registerIp != null">
+        #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="safeKeyExpire != null">
+        #{safeKeyExpire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safeKeyValue != null">
+        #{safeKeyValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.fit.entity.Member">
+    update member
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=BIGINT},
+      </if>
+      <if test="isEnabled != null">
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="isLocked != null">
+        is_locked = #{isLocked,jdbcType=BIT},
+      </if>
+      <if test="memberRank != null">
+        member_rank = #{memberRank,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=BIGINT},
+      </if>
+      <if test="zipCode != null">
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue0 != null">
+        attribute_value0 = #{attributeValue0,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue1 != null">
+        attribute_value1 = #{attributeValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue2 != null">
+        attribute_value2 = #{attributeValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue3 != null">
+        attribute_value3 = #{attributeValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue4 != null">
+        attribute_value4 = #{attributeValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue5 != null">
+        attribute_value5 = #{attributeValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue6 != null">
+        attribute_value6 = #{attributeValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue7 != null">
+        attribute_value7 = #{attributeValue7,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue8 != null">
+        attribute_value8 = #{attributeValue8,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue9 != null">
+        attribute_value9 = #{attributeValue9,jdbcType=VARCHAR},
+      </if>
+      <if test="loginFailureCount != null">
+        login_failure_count = #{loginFailureCount,jdbcType=INTEGER},
+      </if>
+      <if test="lockedDate != null">
+        locked_date = #{lockedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginDate != null">
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="registerIp != null">
+        register_ip = #{registerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="safeKeyExpire != null">
+        safe_key_expire = #{safeKeyExpire,jdbcType=TIMESTAMP},
+      </if>
+      <if test="safeKeyValue != null">
+        safe_key_value = #{safeKeyValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="Base_Where_List">
+    <where>
+      <if test="createDate != null and createDate != ''">
+         and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null and modifyDate != ''">
+         and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="username != null and username != ''">
+         and username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null and password != ''">
+         and `password` = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="amount != null and amount != ''">
+         and amount = #{amount,jdbcType=DECIMAL}
+      </if>
+      <if test="balance != null and balance != ''">
+         and balance = #{balance,jdbcType=DECIMAL}
+      </if>
+      <if test="point != null and point != ''">
+         and point = #{point,jdbcType=BIGINT}
+      </if>
+      <if test="isEnabled != null and isEnabled != ''">
+         and is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="isLocked != null and isLocked != ''">
+         and is_locked = #{isLocked,jdbcType=BIT}
+      </if>
+      <if test="memberRank != null and memberRank != ''">
+         and member_rank = #{memberRank,jdbcType=BIGINT}
+      </if>
+      <if test="name != null and name != ''">
+         and `name` = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null and gender != ''">
+         and gender = #{gender,jdbcType=INTEGER}
+      </if>
+      <if test="birth != null and birth != ''">
+         and birth = #{birth,jdbcType=TIMESTAMP}
+      </if>
+      <if test="email != null and email != ''">
+         and email = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null and address != ''">
+         and address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="area != null and area != ''">
+         and area = #{area,jdbcType=BIGINT}
+      </if>
+      <if test="zipCode != null and zipCode != ''">
+         and zip_code = #{zipCode,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null and phone != ''">
+         and phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null and mobile != ''">
+         and mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue0 != null and attributeValue0 != ''">
+         and attribute_value0 = #{attributeValue0,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue1 != null and attributeValue1 != ''">
+         and attribute_value1 = #{attributeValue1,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue2 != null and attributeValue2 != ''">
+         and attribute_value2 = #{attributeValue2,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue3 != null and attributeValue3 != ''">
+         and attribute_value3 = #{attributeValue3,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue4 != null and attributeValue4 != ''">
+         and attribute_value4 = #{attributeValue4,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue5 != null and attributeValue5 != ''">
+         and attribute_value5 = #{attributeValue5,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue6 != null and attributeValue6 != ''">
+         and attribute_value6 = #{attributeValue6,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue7 != null and attributeValue7 != ''">
+         and attribute_value7 = #{attributeValue7,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue8 != null and attributeValue8 != ''">
+         and attribute_value8 = #{attributeValue8,jdbcType=VARCHAR}
+      </if>
+      <if test="attributeValue9 != null and attributeValue9 != ''">
+         and attribute_value9 = #{attributeValue9,jdbcType=VARCHAR}
+      </if>
+      <if test="loginFailureCount != null and loginFailureCount != ''">
+         and login_failure_count = #{loginFailureCount,jdbcType=INTEGER}
+      </if>
+      <if test="lockedDate != null and lockedDate != ''">
+         and locked_date = #{lockedDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="loginDate != null and loginDate != ''">
+         and login_date = #{loginDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="loginIp != null and loginIp != ''">
+         and login_ip = #{loginIp,jdbcType=VARCHAR}
+      </if>
+      <if test="number != null and number != ''">
+         and `number` = #{number,jdbcType=VARCHAR}
+      </if>
+      <if test="registerIp != null and registerIp != ''">
+         and register_ip = #{registerIp,jdbcType=VARCHAR}
+      </if>
+      <if test="safeKeyExpire != null and safeKeyExpire != ''">
+         and safe_key_expire = #{safeKeyExpire,jdbcType=TIMESTAMP}
+      </if>
+      <if test="safeKeyValue != null and safeKeyValue != ''">
+         and safe_key_value = #{safeKeyValue,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </sql>
+  <select id="findList" parameterType="com.fit.entity.Member" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from member
+    <include refid="Base_Where_List" />
+    order by id desc 
+	<if test="offset != null and limit != null">
+	limit ${offset}, ${limit}
+	</if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1) from member
+    <include refid="Base_Where_List" />
+  </select>
+  <select id="get" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from member
+     <include refid="Base_Where_List" />
+  </select>
+  <delete id="batchDelete">
+    delete from member
+     where id in (
+     <foreach collection="array" item="id" separator=",">
+     #{id}
+     </foreach>
+    )
+  </delete>
+</mapper>

@@ -1,0 +1,78 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      timeout: 200m
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+  error:
+    whitelabel:
+      enabled: false
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 200
+      min-spare: 20
+spring:
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  mvc:
+    static-path-pattern: /static/**
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    format:
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+      date-time: yyyy-MM-dd HH:mm:ss
+    http:
+      converters:
+        preferred-json-mapper: fastjson
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/shopxx_shiro
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 600000
+      pool-name: mysql-pool
+      max-lifetime: 600000
+      connection-timeout: 30000
+      connection-test-query: select 1
+      validation-timeout: 30000
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      readOnly: false
+  devtools:
+    restart:
+      enabled: false
+      exclude: static/**,public/**,site/**,cache/**,head/**
+
+mybatis:
+  configuration:
+    cache-enabled: true
+    use-generated-keys: true
+    default-executor-type: REUSE
+  type-aliases-package: com.fit.entity
+  mapper-locations: classpath:mapper/*.xml
+
+debug: true
+
+logging:
+  file:
+    path: ./target/log
+  level:
+    web: debug
+fit:
+  seo_id: 1
+  session: FIT_SESSION
+

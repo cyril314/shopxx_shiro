@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fit.dao.MessageDao">
+  <resultMap id="BaseResultMap" type="com.fit.entity.Message">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="is_draft" jdbcType="BIT" property="isDraft" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="sender" jdbcType="BIGINT" property="sender" />
+    <result column="sender_read" jdbcType="BIT" property="senderRead" />
+    <result column="sender_delete" jdbcType="BIT" property="senderDelete" />
+    <result column="receiver" jdbcType="BIGINT" property="receiver" />
+    <result column="receiver_read" jdbcType="BIT" property="receiverRead" />
+    <result column="receiver_delete" jdbcType="BIT" property="receiverDelete" />
+    <result column="for_message" jdbcType="BIGINT" property="forMessage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, ip, is_draft, title, content, sender, sender_read, 
+    sender_delete, receiver, receiver_read, receiver_delete, for_message
+  </sql>
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="save" keyProperty="id" parameterType="com.fit.entity.Message" useGeneratedKeys="true">
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="isDraft != null">
+        is_draft,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="sender != null">
+        sender,
+      </if>
+      <if test="senderRead != null">
+        sender_read,
+      </if>
+      <if test="senderDelete != null">
+        sender_delete,
+      </if>
+      <if test="receiver != null">
+        receiver,
+      </if>
+      <if test="receiverRead != null">
+        receiver_read,
+      </if>
+      <if test="receiverDelete != null">
+        receiver_delete,
+      </if>
+      <if test="forMessage != null">
+        for_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="isDraft != null">
+        #{isDraft,jdbcType=BIT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null">
+        #{sender,jdbcType=BIGINT},
+      </if>
+      <if test="senderRead != null">
+        #{senderRead,jdbcType=BIT},
+      </if>
+      <if test="senderDelete != null">
+        #{senderDelete,jdbcType=BIT},
+      </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=BIGINT},
+      </if>
+      <if test="receiverRead != null">
+        #{receiverRead,jdbcType=BIT},
+      </if>
+      <if test="receiverDelete != null">
+        #{receiverDelete,jdbcType=BIT},
+      </if>
+      <if test="forMessage != null">
+        #{forMessage,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.fit.entity.Message">
+    update message
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="isDraft != null">
+        is_draft = #{isDraft,jdbcType=BIT},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null">
+        sender = #{sender,jdbcType=BIGINT},
+      </if>
+      <if test="senderRead != null">
+        sender_read = #{senderRead,jdbcType=BIT},
+      </if>
+      <if test="senderDelete != null">
+        sender_delete = #{senderDelete,jdbcType=BIT},
+      </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=BIGINT},
+      </if>
+      <if test="receiverRead != null">
+        receiver_read = #{receiverRead,jdbcType=BIT},
+      </if>
+      <if test="receiverDelete != null">
+        receiver_delete = #{receiverDelete,jdbcType=BIT},
+      </if>
+      <if test="forMessage != null">
+        for_message = #{forMessage,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="Base_Where_List">
+    <where>
+      <if test="createDate != null and createDate != ''">
+         and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null and modifyDate != ''">
+         and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="ip != null and ip != ''">
+         and ip = #{ip,jdbcType=VARCHAR}
+      </if>
+      <if test="isDraft != null and isDraft != ''">
+         and is_draft = #{isDraft,jdbcType=BIT}
+      </if>
+      <if test="title != null and title != ''">
+         and title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="content != null and content != ''">
+         and content = #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="sender != null and sender != ''">
+         and sender = #{sender,jdbcType=BIGINT}
+      </if>
+      <if test="senderRead != null and senderRead != ''">
+         and sender_read = #{senderRead,jdbcType=BIT}
+      </if>
+      <if test="senderDelete != null and senderDelete != ''">
+         and sender_delete = #{senderDelete,jdbcType=BIT}
+      </if>
+      <if test="receiver != null and receiver != ''">
+         and receiver = #{receiver,jdbcType=BIGINT}
+      </if>
+      <if test="receiverRead != null and receiverRead != ''">
+         and receiver_read = #{receiverRead,jdbcType=BIT}
+      </if>
+      <if test="receiverDelete != null and receiverDelete != ''">
+         and receiver_delete = #{receiverDelete,jdbcType=BIT}
+      </if>
+      <if test="forMessage != null and forMessage != ''">
+         and for_message = #{forMessage,jdbcType=BIGINT}
+      </if>
+    </where>
+  </sql>
+  <select id="findList" parameterType="com.fit.entity.Message" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from message
+    <include refid="Base_Where_List" />
+    order by id desc 
+	<if test="offset != null and limit != null">
+	limit ${offset}, ${limit}
+	</if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1) from message
+    <include refid="Base_Where_List" />
+  </select>
+  <select id="get" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from message
+     <include refid="Base_Where_List" />
+  </select>
+  <delete id="batchDelete">
+    delete from message
+     where id in (
+     <foreach collection="array" item="id" separator=",">
+     #{id}
+     </foreach>
+    )
+  </delete>
+</mapper>

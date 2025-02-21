@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fit.dao.MemberRankDao">
+  <resultMap id="BaseResultMap" type="com.fit.entity.MemberRank">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="scale" jdbcType="DOUBLE" property="scale" />
+    <result column="is_default" jdbcType="BIT" property="isDefault" />
+    <result column="is_special" jdbcType="BIT" property="isSpecial" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, modify_date, `name`, amount, `scale`, is_default, is_special
+  </sql>
+  <select id="getById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_rank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from member_rank
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="save" keyProperty="id" parameterType="com.fit.entity.MemberRank" useGeneratedKeys="true">
+    insert into member_rank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="scale != null">
+        `scale`,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="isSpecial != null">
+        is_special,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="scale != null">
+        #{scale,jdbcType=DOUBLE},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="isSpecial != null">
+        #{isSpecial,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.fit.entity.MemberRank">
+    update member_rank
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="scale != null">
+        `scale` = #{scale,jdbcType=DOUBLE},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="isSpecial != null">
+        is_special = #{isSpecial,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="Base_Where_List">
+    <where>
+      <if test="createDate != null and createDate != ''">
+         and create_date = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="modifyDate != null and modifyDate != ''">
+         and modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="name != null and name != ''">
+         and `name` = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="amount != null and amount != ''">
+         and amount = #{amount,jdbcType=DECIMAL}
+      </if>
+      <if test="scale != null and scale != ''">
+         and `scale` = #{scale,jdbcType=DOUBLE}
+      </if>
+      <if test="isDefault != null and isDefault != ''">
+         and is_default = #{isDefault,jdbcType=BIT}
+      </if>
+      <if test="isSpecial != null and isSpecial != ''">
+         and is_special = #{isSpecial,jdbcType=BIT}
+      </if>
+    </where>
+  </sql>
+  <select id="findList" parameterType="com.fit.entity.MemberRank" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from member_rank
+    <include refid="Base_Where_List" />
+    order by id desc 
+	<if test="offset != null and limit != null">
+	limit ${offset}, ${limit}
+	</if>
+  </select>
+  <select id="findCount" resultType="java.lang.Integer">
+    select count(1) from member_rank
+    <include refid="Base_Where_List" />
+  </select>
+  <select id="get" parameterType="java.util.Map" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+     from member_rank
+     <include refid="Base_Where_List" />
+  </select>
+  <delete id="batchDelete">
+    delete from member_rank
+     where id in (
+     <foreach collection="array" item="id" separator=",">
+     #{id}
+     </foreach>
+    )
+  </delete>
+</mapper>
