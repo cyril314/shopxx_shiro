@@ -65,7 +65,7 @@ mybatis:
   type-aliases-package: com.fit.entity
   mapper-locations: classpath:mapper/*.xml
 
-debug: true
+debug: false
 
 logging:
   file:
