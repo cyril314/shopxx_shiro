@@ -132,7 +132,7 @@ public class PracticeController extends BaseController {
         init(request);
 
         ProductCategory category = productCategoryService.get(cateId);
-        List<ProductQuestion> questions = questionService.findAll();
+        List<ProductQuestion> questions = questionService.findList();
         if (questions.size() > 20) {
             List<ProductQuestion> result = new ArrayList<ProductQuestion>();
             int[] numbers = this.choice(questions.size(), 20);

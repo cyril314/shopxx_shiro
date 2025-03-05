@@ -102,7 +102,7 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public String view(HttpServletRequest request, Long id) {
         request.setAttribute("genders", Gender.values());
-        request.setAttribute("memberAttributes", memberAttributeService.findAll());
+        request.setAttribute("memberAttributes", memberAttributeService.findList());
         request.setAttribute("member", memberService.get(id));
         return "/admin/member/view";
     }
@@ -113,8 +113,8 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(HttpServletRequest request) {
         request.setAttribute("genders", Gender.values());
-        request.setAttribute("memberRanks", memberRankService.findAll());
-        request.setAttribute("memberAttributes", memberAttributeService.findAll());
+        request.setAttribute("memberRanks", memberRankService.findList());
+        request.setAttribute("memberAttributes", memberAttributeService.findList());
         return "/admin/member/add";
     }
 
@@ -124,8 +124,8 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(HttpServletRequest request, Long id) {
         request.setAttribute("genders", Gender.values());
-        request.setAttribute("memberRanks", memberRankService.findAll());
-        request.setAttribute("memberAttributes", memberAttributeService.findAll());
+        request.setAttribute("memberRanks", memberRankService.findList());
+        request.setAttribute("memberAttributes", memberAttributeService.findList());
         request.setAttribute("member", memberService.get(id));
         return "/admin/member/edit";
     }
@@ -136,8 +136,8 @@ public class MemberController extends BaseController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(HttpServletRequest request) {
         Map<String, Object> params = getRequestParamsMap(request);
-        request.setAttribute("memberRanks", memberRankService.findAll());
-        request.setAttribute("memberAttributes", memberAttributeService.findAll());
+        request.setAttribute("memberRanks", memberRankService.findList());
+        request.setAttribute("memberAttributes", memberAttributeService.findList());
         request.setAttribute("page", new Page(memberService.findList(params)));
         return "/admin/member/list";
     }

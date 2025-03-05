@@ -128,7 +128,7 @@ public class MemberRankController extends BaseController {
                     return R.error(shiroMessage.getMessage("admin.memberRank.deleteExistNotAllowed", memberRank.getName()));
                 }
             }
-            long totalCount = memberRankService.allCount();
+            long totalCount = memberRankService.findCount();
             if (ids.length >= totalCount) {
                 return R.error(shiroMessage.getMessage("admin.common.deleteAllNotAllowed"));
             }

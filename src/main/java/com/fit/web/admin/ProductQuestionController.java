@@ -21,7 +21,7 @@ import java.util.Map;
 
 @Controller("adminQuestionContorller")
 @RequestMapping("/admin/question")
-public class ProductQuestionContorller extends BaseController {
+public class ProductQuestionController extends BaseController {
 
     @Autowired
     private ShiroMessage shiroMessage;
@@ -41,14 +41,14 @@ public class ProductQuestionContorller extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(HttpServletRequest request) {
-        request.setAttribute("productCategoryTree", productCategoryService.findAll());
+        request.setAttribute("productCategoryTree", productCategoryService.findList());
         request.setAttribute("questionTypes", Type.values());
         return "/admin/question/add";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(Long id, HttpServletRequest request) {
-        request.setAttribute("productCategoryTree", productCategoryService.findAll());
+        request.setAttribute("productCategoryTree", productCategoryService.findList());
         request.setAttribute("questionTypes", Type.values());
 
         ProductQuestion question = questionService.get(id);
@@ -69,7 +69,7 @@ public class ProductQuestionContorller extends BaseController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public R delete(Long[] ids) {
-        if (ids.length >= questionService.allCount()) {
+        if (ids.length >= questionService.findCount()) {
             return R.error(shiroMessage.getMessage("admin.common.deleteAllNotAllowed"));
         }
         questionService.batchDelete(ids);

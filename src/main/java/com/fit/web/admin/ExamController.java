@@ -35,13 +35,13 @@ public class ExamController extends BaseController {
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(HttpServletRequest request) {
-        request.setAttribute("papers", paperService.findAll());
+        request.setAttribute("papers", paperService.findList());
         return "/admin/exam/add";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(Long id, ModelMap model) {
-        model.addAttribute("papers", paperService.findAll());
+        model.addAttribute("papers", paperService.findList());
         model.addAttribute("exam", examService.get(id));
         return "/admin/exam/edit";
     }

@@ -31,7 +31,7 @@ public class ExamController extends BaseController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
         init(request);
-        request.setAttribute("recentExams", examService.findAll());
+        request.setAttribute("recentExams", examService.findList());
         return "/book/exam/index";
     }
 

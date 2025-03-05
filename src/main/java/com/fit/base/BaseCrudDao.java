@@ -21,6 +21,8 @@ public interface BaseCrudDao<T> {
      */
     public T get(T entity);
 
+    public List<T> findList();
+
     /**
      * 查询数据列表
      */
@@ -31,14 +33,12 @@ public interface BaseCrudDao<T> {
      */
     public List<T> findList(Map<String, Object> map);
 
-    public List<T> findList();
+    public int findCount();
 
     /**
      * 列表数量
      */
     public int findCount(Map<String, Object> map);
-
-    public int allCount();
 
     /**
      * 插入数据

@@ -37,7 +37,7 @@ public class MemberAttributeListDirective extends BaseDirective {
         List<MemberAttribute> memberAttributes;
         boolean useCache = useCache(env, params);
         String cacheRegion = getCacheRegion(env, params);
-        memberAttributes = memberAttributeService.findAll();
+        memberAttributes = memberAttributeService.findList();
         setLocalVariable(VARIABLE_NAME, memberAttributes, env, body);
     }
 }

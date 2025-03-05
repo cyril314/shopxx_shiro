@@ -16,31 +16,22 @@ $(document).ready(function() {
 	var $method = $("#method");
 	var $distributions = $("tr.distribution");
 	var $inputForm = $("#inputForm");
-	
-	
+
 	[@flash_message /]
-	
-	
-	$counts.each(function()
-	{
-		$(this).change(function()
-		{
-			var allCount = 0;
-			
-			$counts.each(function()
-			{
-				var $this = $(this);
-				
-				var count = $this.val();
-				var mark = $this.closest("tr").find(".mark").val();
-				
-				allCount += count * mark;
-			});
-			
-			$allCount.val(allCount);
-		});
-	});
-	
+
+    $counts.each(function () {
+        $(this).change(function () {
+            var allCount = 0;
+            $counts.each(function () {
+                var $this = $(this);
+                var count = $this.val();
+                var mark = $this.closest("tr").find(".mark").val();
+                allCount += count * mark;
+            });
+
+            $allCount.val(allCount);
+        });
+    });
 });
 </script>
 </head>

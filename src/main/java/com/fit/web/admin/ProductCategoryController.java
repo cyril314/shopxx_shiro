@@ -39,7 +39,7 @@ public class ProductCategoryController extends BaseController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(HttpServletRequest request) {
-        request.setAttribute("productCategoryTree", productCategoryService.findAll());
+        request.setAttribute("productCategoryTree", productCategoryService.findList());
         return "/admin/product_category/add";
     }
 
@@ -48,7 +48,7 @@ public class ProductCategoryController extends BaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(HttpServletRequest request) {
-        List<ProductCategory> all = productCategoryService.findAll();
+        List<ProductCategory> all = productCategoryService.findList();
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         for (ProductCategory productCategory : all) {
             Map<String, Object> map = new HashMap<>();

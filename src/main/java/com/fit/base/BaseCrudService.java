@@ -42,6 +42,10 @@ public abstract class BaseCrudService<D extends BaseCrudDao<T>, T extends BaseEn
         return dao.get(entity);
     }
 
+    public List<T> findList() {
+        return dao.findList();
+    }
+
     /**
      * 查询列表数据
      *
@@ -55,8 +59,8 @@ public abstract class BaseCrudService<D extends BaseCrudDao<T>, T extends BaseEn
         return dao.findList(map);
     }
 
-    public List<T> findAll() {
-        return dao.findList();
+    public int findCount() {
+        return dao.findCount();
     }
 
     /**
@@ -64,10 +68,6 @@ public abstract class BaseCrudService<D extends BaseCrudDao<T>, T extends BaseEn
      */
     public int findCount(Map<String, Object> map) {
         return dao.findCount(map);
-    }
-
-    public int allCount() {
-        return dao.allCount();
     }
 
     /**
