@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.fit.base.BaseController;
 import com.fit.base.R;
 import com.fit.config.freemarker.Page;
-import com.fit.config.shiro.ShiroMessage;
+import com.fit.config.shiro.I18nMessage;
 import com.fit.entity.ProductQuestion;
 import com.fit.service.ProductCategoryService;
 import com.fit.service.ProductQuestionOptionService;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class ProductQuestionController extends BaseController {
 
     @Autowired
-    private ShiroMessage shiroMessage;
+    private I18nMessage shiroMessage;
     @Autowired
     private ProductQuestionService questionService;
     @Autowired

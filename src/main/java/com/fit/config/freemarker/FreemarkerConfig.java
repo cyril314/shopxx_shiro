@@ -2,7 +2,7 @@ package com.fit.config.freemarker;
 
 import com.fit.config.freemarker.directive.FlashMessageDirective;
 import com.fit.config.freemarker.directive.PaginationDirective;
-import com.fit.config.shiro.ShiroMessage;
+import com.fit.config.shiro.I18nMessage;
 import com.fit.config.shiro.ShiroTags;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -47,8 +47,8 @@ public class FreemarkerConfig {
     }
 
     @Bean
-    public ShiroMessage getMessageMethod() {
-        return new ShiroMessage();
+    public I18nMessage getMessageMethod() {
+        return new I18nMessage();
     }
 
     @Bean
@@ -74,7 +74,7 @@ public class FreemarkerConfig {
         settings.put("template_update_delay", "0"); // 缓存延迟，0 表示禁用缓存（与 cache: false 对应）
         settings.put("datetime_format", "yyyy-MM-dd"); // 日期格式
         settings.put("number_format", "0.##");         // 数字格式
-        settings.put("tag_syntax", "auto_detect");         // 数字格式
+        settings.put("tag_syntax", "auto_detect");     // 设置标签类型
         configurer.setFreemarkerSettings(settings);
         return configurer;
     }

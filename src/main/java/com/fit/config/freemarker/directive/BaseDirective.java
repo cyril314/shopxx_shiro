@@ -196,5 +196,4 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 		body.render(env.getOut());
 		FreemarkerUtils.setVariables(sourceVariables, env);
 	}
-
 }

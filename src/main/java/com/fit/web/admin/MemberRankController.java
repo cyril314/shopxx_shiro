@@ -2,13 +2,12 @@ package com.fit.web.admin;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.fit.base.BaseController;
 import com.fit.base.R;
 import com.fit.config.freemarker.Page;
-import com.fit.config.shiro.ShiroMessage;
+import com.fit.config.shiro.I18nMessage;
 import com.fit.entity.MemberRank;
 import com.fit.service.MemberRankService;
 import com.fit.service.MemberService;
@@ -19,7 +18,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MemberRankController extends BaseController {
 
     @Autowired
-    private ShiroMessage shiroMessage;
+    private I18nMessage shiroMessage;
     @Autowired
     private MemberService memberService;
     @Autowired

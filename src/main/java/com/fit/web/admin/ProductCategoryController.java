@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.fit.base.BaseController;
 import com.fit.base.R;
-import com.fit.config.shiro.ShiroMessage;
+import com.fit.config.shiro.I18nMessage;
 import com.fit.entity.ProductCategory;
 import com.fit.service.ProductCategoryService;
 import com.fit.service.ProductQuestionService;
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ProductCategoryController extends BaseController {
 
     @Autowired
-    private ShiroMessage shiroMessage;
+    private I18nMessage shiroMessage;
     @Autowired
     private ProductCategoryService productCategoryService;
     @Autowired

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.fit.base.BaseController;
 import com.fit.config.freemarker.Page;
 import com.fit.base.R;
-import com.fit.config.shiro.ShiroMessage;
+import com.fit.config.shiro.I18nMessage;
 import com.fit.entity.Member;
 import com.fit.entity.SysSetting;
 import com.fit.service.*;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MemberController extends BaseController {
 
     @Autowired
-    private ShiroMessage shiroMessage;
+    private I18nMessage shiroMessage;
     @Autowired
     private SysSettingService sysSettingService;
     @Autowired

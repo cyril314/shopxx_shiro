@@ -16,8 +16,8 @@ import java.util.Locale;
  * @Author AIM
  * @DATE 2025/1/15
  */
-@Component("shiroMessage")
-public class ShiroMessage implements TemplateMethodModel {
+@Component("i18nMessage")
+public class I18nMessage implements TemplateMethodModel {
 
     @Lazy
     @Autowired

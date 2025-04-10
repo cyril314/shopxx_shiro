@@ -104,7 +104,6 @@ public class ShiroConfig {
         return em;
     }
 
-
     @Bean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
